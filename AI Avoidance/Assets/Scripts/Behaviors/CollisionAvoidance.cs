@@ -9,7 +9,7 @@ public class CollisionAvoidance : SteeringBehavior
 
     public Kinematic[] targets;
 
-    float m_radius = 0.5f;
+    float m_radius = 1f;
 
     public override SteeringOutput getSteering()
     {
@@ -19,7 +19,7 @@ public class CollisionAvoidance : SteeringBehavior
 
         Kinematic firstTarget = null;
         float firstMinSeperation = float.MaxValue;
-        float firstDistance =  float.MaxValue;
+        float firstDistance = float.MaxValue;
         Vector3 firstRelativePos = Vector3.one;
         Vector3 firstRelativeVel = Vector3.one;
 
@@ -49,13 +49,13 @@ public class CollisionAvoidance : SteeringBehavior
 
         float dor = Vector3.Dot(character.linearVelocity.normalized, firstTarget.linearVelocity.normalized);
         if (dor < -0.9f)
-            result.linear = new Vector3(character.linearVelocity.z, 0f, character.linearVelocity.x);
+            result.linear = -firstTarget.transform.right;
         else
             result.linear = -firstTarget.linearVelocity;
 
         result.linear.Normalize();
 
-        result.linear = firstRelativePos * maxAcceleration;
+        result.linear *= maxAcceleration;
         result.angular = 0;
         return result;
     }

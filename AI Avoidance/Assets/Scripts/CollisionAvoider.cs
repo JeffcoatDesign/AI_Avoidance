@@ -11,7 +11,7 @@ public class CollisionAvoider : Kinematic
     // Start is called before the first frame update
     void Start()
     {
-        myMoveType = new ();
+        myMoveType = new();
         myMoveType.character = this;
         List<Kinematic> kinematics = FindObjectsByType<Kinematic>(FindObjectsSortMode.None).ToList();
         kinematics.Remove(this);
