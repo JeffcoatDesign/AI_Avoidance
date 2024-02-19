@@ -6,15 +6,14 @@ using UnityEngine;
 public class CollisionAvoider : Kinematic
 {
     CollisionAvoidance myMoveType;
-    Align myRotateType;
+    LookWhereGoing myRotateType;
+    public List<Kinematic> kinematics = new List<Kinematic>();
 
     // Start is called before the first frame update
     void Start()
     {
         myMoveType = new();
         myMoveType.character = this;
-        List<Kinematic> kinematics = FindObjectsByType<Kinematic>(FindObjectsSortMode.None).ToList();
-        kinematics.Remove(this);
         myMoveType.targets = kinematics.ToArray();
         myRotateType = new LookWhereGoing();
         myRotateType.character = this;

@@ -9,7 +9,7 @@ public class CollisionAvoidance : SteeringBehavior
 
     public Kinematic[] targets;
 
-    float m_radius = 1f;
+    float m_radius = 0.5f;
 
     public override SteeringOutput getSteering()
     {
@@ -51,7 +51,7 @@ public class CollisionAvoidance : SteeringBehavior
         if (dor < -0.9f)
             result.linear = -firstTarget.transform.right;
         else
-            result.linear = -firstTarget.linearVelocity;
+            result.linear = -firstTarget.transform.forward;
 
         result.linear.Normalize();
 
